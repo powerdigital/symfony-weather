@@ -35,4 +35,20 @@ class WeatherService
 
         return $this->formatter->format($data);
     }
+
+    /**
+     * @param AbstractProvider $provider
+     */
+    public function setProvider(AbstractProvider $provider): void
+    {
+        $this->provider = $provider;
+    }
+
+    /**
+     * @param FormatterInterface $formatter
+     */
+    public function setFormatter(FormatterInterface $formatter): void
+    {
+        $this->formatter = $formatter;
+    }
 }

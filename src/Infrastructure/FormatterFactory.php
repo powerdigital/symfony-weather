@@ -8,6 +8,9 @@ class FormatterFactory
 {
     private const FORMATTER_PATH = 'App\\Infrastructure\\Formatter\\';
 
+    /**
+     * @var string
+     */
     private $format;
 
     public function __construct(string $format)
@@ -21,5 +24,13 @@ class FormatterFactory
         $className = self::FORMATTER_PATH . $format . 'Formatter';
 
         return new $className;
+    }
+
+    /**
+     * @param string $format
+     */
+    public function setFormat(string $format): void
+    {
+        $this->format = $format;
     }
 }
