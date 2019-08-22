@@ -15,7 +15,7 @@ class WeatherServiceTest extends TestCase
 {
     private const PROVIDER = 'yandex';
 
-    private const FORMAT = 'xml';
+    private const FORMAT = 'json';
 
     /**
      * @var ClientInterface

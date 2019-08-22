@@ -6,5 +6,5 @@ use App\Domain\Entity\WeatherInfo;
 
 interface FormatterInterface
 {
-    public function format(WeatherInfo $data): string;
+    public function format(WeatherInfo $info): string;
 }
