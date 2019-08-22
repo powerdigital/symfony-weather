@@ -16,7 +16,7 @@ use PHPUnit\Framework\TestCase;
 
 class WeatherServiceTest extends TestCase
 {
-    private const PROVIDER_YANDEX = 'yandex';
+    private const PROVIDER = 'yandex';
 
     private const FORMAT_JSON = 'json';
 
@@ -52,7 +52,7 @@ class WeatherServiceTest extends TestCase
 
     private function initProvider()
     {
-        $providerFactory = new ProviderFactory($this->client, self::PROVIDER_YANDEX);
+        $providerFactory = new ProviderFactory($this->client, self::PROVIDER);
         $provider = $providerFactory->make();
         $this->assertInstanceOf(YandexApi::class, $provider);
 
