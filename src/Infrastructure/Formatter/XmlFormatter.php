@@ -9,6 +9,6 @@ class XmlFormatter implements FormatterInterface
 {
     public function format(WeatherInfo $data): string
     {
-        // TODO: Implement write() method.
+        return '<xml>';
     }
 }

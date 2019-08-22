@@ -2,13 +2,13 @@
 
 namespace App\Infrastructure\Provider;
 
+use App\Domain\AbstractProvider;
 use App\Domain\Entity\WeatherInfo;
-use App\Domain\ProviderInterface;
 
-class GismeteoApi implements ProviderInterface
+class GismeteoApi extends AbstractProvider
 {
-    public function load(): WeatherInfo
+    function convertResponse(): WeatherInfo
     {
-        // TODO: Implement load() method.
+        // TODO: Implement convert() method.
     }
 }

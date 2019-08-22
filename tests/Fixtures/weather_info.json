@@ -1,0 +1,36 @@
+{
+  "now": 1470220206,
+  "now_dt": "2016-08-03T10:30:06.238Z",
+  "info": {
+    "lat": 55.833333,
+    "lon": 37.616667,
+    "tzinfo": {
+      "offset": 10800,
+      "name": "Europe/Moscow",
+      "abbr": "MSK",
+      "dst": false
+    },
+    "def_pressure_mm": 746,
+    "def_pressure_pa": 994,
+    "url": "https://yandex.ru/pogoda/moscow"
+  },
+  "fact": {
+    "temp": 20,
+    "feels_like": 21,
+    "icon": "ovc",
+    "condition": "overcast",
+    "wind_speed": 2,
+    "wind_gust": 5.9,
+    "wind_dir": "n",
+    "pressure_mm": 745,
+    "pressure_pa": 994,
+    "humidity": 83,
+    "daytime": "d",
+    "polar": false,
+    "season": "summer",
+    "prec_type": 1,
+    "prec_strength": 0.25,
+    "cloudness": 1,
+    "obs_time": 1470214800
+  }
+}

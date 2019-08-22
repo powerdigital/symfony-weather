@@ -2,25 +2,37 @@
 
 namespace App\Domain\Service;
 
+use App\Domain\FormatterInterface;
+use App\Domain\AbstractProvider;
+
 class WeatherService
 {
+    /**
+     * Provider object
+     *
+     * @var AbstractProvider
+     */
     private $provider;
 
+    /**
+     * Formatter object
+     *
+     * @var FormatterInterface
+     */
     private $formatter;
 
-    public function __construct(string $provider, string $format)
-    {
-        $this->initProvider($provider);
-        $this->setFormatter($format);
+    public function __construct(
+        AbstractProvider $provider,
+        FormatterInterface $formatter
+    ) {
+        $this->provider = $provider;
+        $this->formatter = $formatter;
     }
 
-    private function initProvider(string $provider)
+    public function getFormattedInfo(): string
     {
+        $data = $this->provider->getInfo();
 
-    }
-
-    private function setFormatter(string $format)
-    {
-
+        return $this->formatter->format($data);
     }
 }
