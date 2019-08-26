@@ -12,6 +12,7 @@ use App\Infrastructure\Formatter\XmlFormatter;
 use App\Infrastructure\Provider\YandexApi;
 use App\Infrastructure\FormatterFactory;
 use App\Infrastructure\ProviderFactory;
+use DateTime;
 use PHPUnit\Framework\TestCase;
 
 class WeatherServiceTest extends TestCase
@@ -83,9 +84,27 @@ class WeatherServiceTest extends TestCase
      */
     public function testGetInfo()
     {
-        $stub = $this->createMock(YandexApi::class);
+        $provider = new YandexApi($this->client);
 
-        $weatherInfo = $stub->getInfo();
+        $weatherInfo = $provider->getInfo();
         $this->assertInstanceOf(WeatherInfo::class, $weatherInfo);
+
+        $this->assertIsInt($weatherInfo->getTemperature());
+        $this->assertEquals($weatherInfo->getTemperature(), 20);
+
+        $this->assertIsInt($weatherInfo->getFeelsLike());
+        $this->assertEquals($weatherInfo->getFeelsLike(), 21);
+
+        $this->assertIsInt($weatherInfo->getPressure());
+        $this->assertEquals($weatherInfo->getPressure(), 745);
+
+        $this->assertInstanceOf(DateTime::class, $weatherInfo->getTime());
+        $this->assertEquals($weatherInfo->getTime(), new DateTime('2016-08-03 10:30:06.238'));
+
+        $this->assertIsString($weatherInfo->getWindDir());
+        $this->assertEquals($weatherInfo->getWindDir(), 'n');
+
+        $this->assertIsInt($weatherInfo->getWindSpeed());
+        $this->assertEquals($weatherInfo->getWindSpeed(), 2);
     }
 }
