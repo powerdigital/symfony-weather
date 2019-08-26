@@ -14,6 +14,7 @@ use App\Infrastructure\FormatterFactory;
 use App\Infrastructure\ProviderFactory;
 use DateTime;
 use PHPUnit\Framework\TestCase;
+use SimpleXMLElement;
 
 class WeatherServiceTest extends TestCase
 {
@@ -67,16 +68,27 @@ class WeatherServiceTest extends TestCase
         $jsonFormatter = $formatterFactory->make();
         $this->assertInstanceOf(JsonFormatter::class, $jsonFormatter);
         $service = new WeatherService($this->provider, $jsonFormatter);
-        $jsonData = $service->getFormattedInfo();
-        $this->assertIsString($jsonData);
+        $jsonString = $service->getFormattedInfo();
+        $this->assertIsString($jsonString);
+        $this->assertJson($jsonString);
 
         $formatterFactory->setFormat(self::FORMAT_XML);
 
         $xmlFormatter = $formatterFactory->make();
         $this->assertInstanceOf(XmlFormatter::class, $xmlFormatter);
         $service->setFormatter($xmlFormatter);
-        $xmlData = $service->getFormattedInfo();
-        $this->assertIsString($xmlData);
+        $xmlString = $service->getFormattedInfo();
+        $this->assertIsString($xmlString);
+
+        $xml = new SimpleXMLElement('<response/>');
+        $xml->addChild('time', '2016-08-03T10:30:06+00:00');
+        $xml->addChild('windSpeed', 2);
+        $xml->addChild('temperature', 20);
+        $xml->addChild('feelsLike', 21);
+        $xml->addChild('windDirection', 'n');
+        $xml->addChild('pressure', 745);
+
+        $this->assertXmlStringEqualsXmlString($xmlString, $xml->asXML());
     }
 
     /**
